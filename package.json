@@ -4,7 +4,9 @@
   "description": "Auction Page",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "sass src/scss:dist/css --watch",
+    "start": "live-server",
+    "dev": "npm-run-all --parallel watch start"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,8 @@
     "bootstrap": "^5.2.0"
   },
   "devDependencies": {
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.69.5"
   }
 }
