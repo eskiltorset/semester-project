@@ -27,6 +27,10 @@ h1 {
     color: $typography;
 }
 
+.sign-out {
+    color: $third;
+}
+
 .navbar-brand:hover {
     cursor: pointer;
 }
@@ -77,6 +81,20 @@ label {
 
 .nav-link:hover {
     color: $secondary;
+}
+
+.credits {
+    font-size: 0.8rem;
+    cursor: default;
+}
+
+.credits:hover {
+    color: $typography;
+}
+
+.credits span {
+    color: green;
+    font-weight: bold;
 }
 
 // line with word on login page

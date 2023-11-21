@@ -11880,6 +11880,10 @@ h1, .h1 {
   color: #000000;
 }
 
+.sign-out {
+  color: #A93465;
+}
+
 .navbar-brand:hover {
   cursor: pointer;
 }
@@ -11929,6 +11933,20 @@ label {
 
 .nav-link:hover {
   color: #0047FF;
+}
+
+.credits {
+  font-size: 0.8rem;
+  cursor: default;
+}
+
+.credits:hover {
+  color: #000000;
+}
+
+.credits span {
+  color: green;
+  font-weight: bold;
 }
 
 .group {
