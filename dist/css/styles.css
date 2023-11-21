@@ -11868,11 +11868,11 @@ h1, .h1 {
   font-size: 13px !important;
 }
 
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
   font-size: 13px !important;
 }
 
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
   font-size: 13px !important;
 }
 
@@ -11894,6 +11894,7 @@ h1, .h1 {
 
 input {
   border-radius: 0;
+  font-size: 13px !important;
 }
 
 label {
@@ -11914,7 +11915,6 @@ label {
   background-color: #0047FF;
   color: white;
   box-shadow: 0 1px 8px #0047FF;
-  border: 0;
 }
 
 .red-btn:hover {

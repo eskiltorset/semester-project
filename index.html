@@ -41,17 +41,17 @@
             <div class="container mt-4 row mx-auto col-10 col-md-8 col-lg-6">
             
             <form class="form-horizontal" id="loginForm">
-                <div class="form-group">
+                <div class="form-group col-sm-8 mx-auto">
                 <label class="control-label col-sm-2 ms-1 mb-1" for="email">Email:</label>
                 <div class="col-sm-12">
-                    <input type="email" class="form-control rounded-0" id="email_input" placeholder="Enter email (@noroff.no / @student.noroff.no)" name="email" >
+                    <input type="email" class="form-control rounded-0 border" id="email_input" placeholder="Enter email (@noroff.no / @student.noroff.no)" name="email" >
                     <p class="email-msg text-danger"></p>
                 </div>
                 </div>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 col-sm-8 mx-auto">
                 <label class="control-label col-sm-2 ms-1 mb-1 mx-auto" for="pwd">Password:</label>
                 <div class="col-sm-12">          
-                    <input type="password" class="form-control rounded-0" id="pwd" placeholder="Enter password" name="pwd"  pattern="^()()[a-zA-Z\d]{8,25}$" title="Password must contain at least 8 characters.">
+                    <input type="password" class="form-control rounded-0 border" id="pwd" placeholder="Enter password" name="pwd"  pattern="^()()[a-zA-Z\d]{8,25}$" title="Password must contain at least 8 characters.">
                     <p class="pwd-msg text-danger"></p>
                 </div>
                 <div class="error-message text-danger"></div>
