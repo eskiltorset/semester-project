@@ -11888,6 +11888,10 @@ h1, .h1 {
   margin: 0 auto;
 }
 
+.login {
+  color: #0047FF;
+}
+
 .btn {
   border-radius: 0;
 }

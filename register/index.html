@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Electro Auction | Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/dist/css/styles.css">
+        <script src="scripts/register/register.js" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm border-bottom">
+                <a class="navbar-brand" href="../index.html">ElectroAuction</a>
+                <div class="w-100">
+                    <form class="d-flex input-group w-50 search">
+                        <input
+                        type="search"
+                        class="form-control rounded-0 border"
+                        placeholder="Search auctions"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        />
+                        <button class="input-group-text blue-btn rounded-0" id="search-addon">
+                        Search
+                        </button>
+                    </form>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item px-2">
+                            <a class="nav-link login" href="../index.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+            <h1 class="text-center mt-5">Register</h1>
+            <div class="container mt-4 row mx-auto col-10 col-md-8 col-lg-6">
+            
+            <form class="form-horizontal" id="loginForm">
+                <div class="form-group col-sm-8 mx-auto">
+                    <label class="control-label col-sm-2 ms-1 mb-1" for="name">Username:</label>
+                    <div class="col-sm-12">
+                        <input type="name" class="form-control rounded-0 border" id="name_input" placeholder="Enter username" name="name" >
+                        <p class="name-msg text-danger"></p>
+                    </div>
+                    </div>
+                <div class="form-group col-sm-8 mx-auto">
+                <label class="control-label col-sm-2 ms-1 mb-1" for="email">Email:</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control rounded-0 border" id="email_input" placeholder="Enter email (@noroff.no / @student.noroff.no)" name="email" >
+                    <p class="email-msg text-danger"></p>
+                </div>
+                </div>
+                <div class="form-group mt-3 col-sm-8 mx-auto">
+                <label class="control-label col-sm-2 ms-1 mb-1 mx-auto" for="pwd">Password:</label>
+                <div class="col-sm-12">          
+                    <input type="password" class="form-control rounded-0 border" id="pwd" placeholder="Enter password" name="pwd"  pattern="^()()[a-zA-Z\d]{8,25}$" title="Password must contain at least 8 characters.">
+                    <p class="pwd-msg text-danger"></p>
+                </div>
+                <div class="error-message text-danger"></div>
+                </div>
+                <div class="form-group col-sm-8 mx-auto">
+                    <label class="control-label col-sm-2 ms-1 mb-1" for="avatar">Avatar:</label>
+                    <div class="col-sm-12">
+                        <input type="avatar" class="form-control rounded-0 border" id="avatar_input" placeholder="Enter Avatar URL" name="avatar" >
+                        <p class="avatar-msg text-danger"></p>
+                    </div>
+                    </div> 
+                <div class="form-group mt-5">        
+                    <div class="col-sm-offset-2 col-sm-12 text-center">
+                        <a class="btn red-btn col-sm-5" href="../index.html">Create Account</a>
+                    </div>
+                </div>
+            </form>
+            </div>
+          </div>
+    </body>
+</html>
