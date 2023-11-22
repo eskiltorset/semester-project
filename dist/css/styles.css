@@ -11900,9 +11900,13 @@ h1, .h1 {
   border-radius: 0;
 }
 
-input {
+input, .textarea {
   border-radius: 0;
   font-size: 13px !important;
+}
+
+.textarea:focus, input:focus {
+  border-color: #D2D2D2;
 }
 
 label {
