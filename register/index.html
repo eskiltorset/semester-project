@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="/dist/css/styles.css">
-        <!-- <script src="scripts/register/register.js" defer></script> -->
+        <script type="module" src="../scripts/register/register.js" defer></script>
     </head>
     <body>
         <div class="container">
@@ -61,18 +61,17 @@
                     <input type="password" class="form-control rounded-0 border" id="pwd" placeholder="Enter password" name="pwd"  pattern="^()()[a-zA-Z\d]{8,25}$" title="Password must contain at least 8 characters.">
                     <p class="pwd-msg text-danger"></p>
                 </div>
-                <div class="error-message text-danger"></div>
                 </div>
                 <div class="form-group col-sm-8 mx-auto">
                     <label class="control-label col-sm-2 ms-1 mb-1" for="avatar">Avatar:</label>
                     <div class="col-sm-12">
                         <input type="avatar" class="form-control rounded-0 border" id="avatar_input" placeholder="Enter Avatar URL" name="avatar" >
-                        <p class="avatar-msg text-danger"></p>
+                        <div class="error-message text-danger mt-2"></div>
                     </div>
                     </div> 
                 <div class="form-group mt-5">        
                     <div class="col-sm-offset-2 col-sm-12 text-center">
-                        <a class="btn red-btn col-sm-5" href="../index.html">Create Account</a>
+                        <button type="submit" class="btn red-btn col-sm-5">Create Account</button>
                     </div>
                 </div>
             </form>
