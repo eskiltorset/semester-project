@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="/dist/css/styles.css">
-        <!-- <script src="../scripts/create_listing/create_listing.js" defer></script> -->
+        <script type="module" src="../../scripts/listings_logged_in/listings_logged_in.js" defer></script>
     </head>
     <body>
         <div class="container">
@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse col-sm-4" id="navbarNav">
                     <ul class="navbar-nav ms-auto text-center">
                         <li class="nav-item ps-2">
-                            <a class="nav-link credits">Credits:<br> <span>900</span></a>
+                            <a class="nav-link credits">Credits:<br> <span id="credit_amount"></span></a>
                         </li>
                         <li class="nav-item px-2 align-self-center">
                             <a class="nav-link profile" href="../profile/index.html">Profile</a>
@@ -43,6 +43,26 @@
                 </div> 
             </nav>
         </div>
+
+        
+        <div class="container row mx-auto col-10 col-md-8 col-lg-6">
+
+        <ul class="nav nav-pills nav-fill col-sm-12 border-bottom">
+            <li class="col-sm-2"></li>
+            <li class="nav-item active my-2">
+              <a class="nav-link rounded-0 col-sm-4" aria-current="page" href="#">Newest</a>
+            </li>
+            <li class="nav-item  my-2">
+              <a class="nav-link rounded-0 col-sm-2" href="#">Popular</a>
+            </li>
+            <a href="/pages/create_listing/index.html" class="btn blue-btn my-2">New listing <span class="glyphicon">&#x2b;</span></a>
+        </ul>
+
+        <h1 class="text-center mt-4">New Listings</h1>
+
+        <div id="listings_section">
+                    
+        </div> 
         
     </body>
 </html>

@@ -24,7 +24,7 @@ async function loginUser(url, userData) {
 
     if (response.status === 200) {
       console.log("Login successful!");
-      window.location.href = "/listings_logged_in/index.html";
+      window.location.href = "/pages/listings_logged_in/index.html";
     }
 
     else {
