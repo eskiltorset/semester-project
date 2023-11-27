@@ -74,13 +74,13 @@ async function fetchlistings(url) {
             viewBtn.classList.add("view-btn", "text-decoration-none");
             viewBtn.innerHTML = "View listing";
             viewBtn.id = listing.id;
-            viewBtn.href = `/listing/?id=${listing.id}`; 
+            //viewBtn.href = `/listing/?id=${listing.id}`; 
 
             const bidBtn = document.createElement("a");
             bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
             bidBtn.innerHTML = "Bid";
             bidBtn.id = listing.id;
-            bidBtn.href = `/listing/?id=${listing.id}`; 
+            bidBtn.href = `../singleListing/?id=${listing.id}`; 
 
             listings_section.appendChild(listingDiv);
             //anchor.appendChild(listingDiv);

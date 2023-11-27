@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Electro Auction | Create Listing</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/dist/css/styles.css">
+        <script type="module" src="../../scripts/listings_logged_in/singleListing.js" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm border-bottom">
+                <a class="navbar-brand col-sm-4" href="../index.html">ElectroAuction</a>
+                <div class="w-100">
+                    <form class="d-flex input-group w-100 search">
+                        <input
+                        type="search"
+                        class="form-control rounded-0 border"
+                        placeholder="Search auctions"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        />
+                        <button class="input-group-text blue-btn rounded-0" id="search-addon">
+                        Search
+                        </button>
+                    </form>
+                </div>
+                <div class="collapse navbar-collapse col-sm-4" id="navbarNav">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item ps-2">
+                            <a class="nav-link credits">Credits:<br> <span id="credit_amount"></span></a>
+                        </li>
+                        <li class="nav-item px-2 align-self-center">
+                            <a class="nav-link profile" href="../profile/index.html">Profile</a>
+                        </li>
+                        <li class="nav-item pe-2 align-self-center">
+                            <a class="nav-link sign-out" href="../index.html">Sign Out</a>
+                        </li>
+                    </ul>
+                </div> 
+            </nav>
+        </div>
+
+        
+        <div class="container row mx-auto col-10 col-md-8 col-lg-6">
+
+            <ul class="nav nav-pills nav-fill col-sm-12">
+                <a href="/pages/listings_logged_in/index.html" class="btn blue-btn my-2 ms-2 mt-4"><i class="fa">&#xf104;</i> Back to auctions</a>
+                
+            </ul>
+
+            <h1 class="text-center mt-4">Item</h1>
+
+            <div class="item-div">
+
+            </div>
+       
+        </div>
+    </body>
+</html>
