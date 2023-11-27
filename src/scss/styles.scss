@@ -124,14 +124,12 @@ label {
 
 // Listing page
 
-.listings_section {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
 .view-btn {
     color: black;
+}
+
+.auctionDate {
+    color: $secondary;
 }
 
 

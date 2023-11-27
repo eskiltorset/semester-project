@@ -1,8 +1,9 @@
 import { API_BASE_URL } from "../variables/script.js";
 
-const fetchlistings_URL = `${API_BASE_URL}/api/v1/auction/listings?limit=20&_seller=true`;
-// const creditAmount = document.getElementById("#credit_amount");
-// creditAmount.innerHTML = listing.credit;
+const fetchlistings_URL = `${API_BASE_URL}/api/v1/auction/listings?limit=20&_seller=true&_bids=true`;
+const creditAmount = document.getElementById("credit_amount");
+const credits = localStorage.getItem('credits');
+creditAmount.innerHTML = credits;
 
 /**
  * Fetches 99 listings from the Rest API
@@ -33,12 +34,16 @@ async function fetchlistings(url) {
 
         if(listing.title){
 
-            const anchor = document.createElement("a");
+            // const anchor = document.createElement("a");
             const listingDiv = document.createElement("div");
-            listingDiv.classList.add("listing", "p-4", "border-bottom", "border", "mt-3", "col-sm-8", "mx-auto");
+            listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-50", "shadow-sm");
+            listingDiv.style.height = "600px";
             listingDiv.id = listing.id;  
 
-            const title = document.createElement("h4");
+            const imageDiv = document.createElement("div");
+            imageDiv.classList.add("image-div", "border", "w-100", "h-50", "bg-dark");
+
+            const title = document.createElement("h5");
             title.classList.add("title", "fw-bolder", "mt-2");
             title.innerHTML = listing.title;
             
@@ -51,41 +56,53 @@ async function fetchlistings(url) {
             auctionDate.innerHTML = `Ends at: ${listing.endsAt}`;
 
             const bids = document.createElement("p");
-            bids.classList.add("auctionDate");
-            bids.innerHTML = `Bids: ${listing._count.bids}`;
+            bids.classList.add("bids");
+            bids.innerHTML = `${listing._count.bids} bids`;
+
+            const count = listing.bids.length;
+            console.log(count);
 
             const seller = document.createElement("h5");
             seller.classList.add("seller");
-            seller.innerHTML = listing.seller.name;
+            seller.innerHTML = `@${listing.seller.name}`;
 
-            const buttonDiv = document.createElement("div");
-            buttonDiv.classList.add("w-100", "mt-4");
+            const leadingBid = document.createElement("p");
+            leadingBid.classList.add("leading-bid");
+            leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
 
             const viewBtn = document.createElement("a");
-            viewBtn.classList.add("view-btn", "float-end", "text-decoration-none");
+            viewBtn.classList.add("view-btn", "text-decoration-none");
             viewBtn.innerHTML = "View listing";
             viewBtn.id = listing.id;
             viewBtn.href = `/listing/?id=${listing.id}`; 
 
-            listings_section.appendChild(anchor);
-            anchor.appendChild(listingDiv);
+            const bidBtn = document.createElement("a");
+            bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
+            bidBtn.innerHTML = "Bid";
+            bidBtn.id = listing.id;
+            bidBtn.href = `/listing/?id=${listing.id}`; 
+
+            listings_section.appendChild(listingDiv);
+            //anchor.appendChild(listingDiv);
 
             if(listing.media){
                 const listingImg = document.createElement("img"); 
-                listingImg.classList.add("w-100");
+                listingImg.classList.add("w-100", "object-fit-cover", "h-100");
                 listingImg.alt = "Auction Image";
                 listingImg.src = listing.media;
 
-                listingDiv.appendChild(listingImg);
+                imageDiv.appendChild(listingImg);
             }
 
+            listingDiv.appendChild(imageDiv);
             listingDiv.appendChild(title);
             listingDiv.appendChild(description);
             listingDiv.appendChild(auctionDate);
             listingDiv.appendChild(bids);
+            listingDiv.appendChild(leadingBid);
             listingDiv.appendChild(seller);
-            listingDiv.appendChild(buttonDiv);
-            buttonDiv.appendChild(viewBtn);
+            listingDiv.appendChild(viewBtn);
+            listingDiv.appendChild(bidBtn);
 
             // // POPULAR FILTER
             // const popular = document.querySelector("#popular");

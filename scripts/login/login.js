@@ -35,6 +35,9 @@ async function loginUser(url, userData) {
     const accessToken = json.accessToken;
     localStorage.setItem("accessToken", accessToken);
 
+    const credits = json.credits;
+    localStorage.setItem("credits", credits);
+
     let loggedInUser = json.name;
     localStorage.setItem("loggedInUser", loggedInUser);
     console.log(`Name: ${localStorage.getItem("loggedInUser")}`);
