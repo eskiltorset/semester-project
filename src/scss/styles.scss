@@ -50,6 +50,7 @@ h1 {
 input, .textarea {
     border-radius: 0;
     font-size: 13px!important;
+    border-color: $fourth;
 }
 
 .textarea:focus, input:focus {

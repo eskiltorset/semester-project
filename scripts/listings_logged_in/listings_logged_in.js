@@ -68,7 +68,14 @@ async function fetchlistings(url) {
 
             const leadingBid = document.createElement("p");
             leadingBid.classList.add("leading-bid");
-            leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
+
+            if(listing.bids.length > 0){
+                leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
+            }
+
+            else if(listing.bids.length < 1){
+                leadingBid.innerHTML = `Leading bid: no bids`;
+            }
 
             const viewBtn = document.createElement("a");
             viewBtn.classList.add("view-btn", "text-decoration-none");
