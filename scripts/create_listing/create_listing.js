@@ -4,6 +4,8 @@ const creditAmount = document.getElementById("credit_amount");
 const credits = localStorage.getItem('credits');
 creditAmount.innerHTML = credits;
 
+const postForm = document.getElementById("postForm");
+
 /**
  * Creates a post which is saved in the Rest API
  * @param {string} url Rest API URL for 'post' posts
@@ -34,8 +36,6 @@ async function createPost(url, postData) {
     }
 }
 
-const postForm = document.getElementById("postForm");
-
 postForm.addEventListener("submit", async (event) => {
 
     event.preventDefault();
@@ -65,7 +65,7 @@ postForm.addEventListener("submit", async (event) => {
 
             await createPost(createPosts_URL, userPost);
 
-            // window.location.href = "listing_created/index.html";
+            window.location.href = `../singleListing/?id=${json.id}`; ;
         }
 
         catch(error) {

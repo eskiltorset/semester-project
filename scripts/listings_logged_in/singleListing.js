@@ -5,6 +5,9 @@ function getId() {
     return url.searchParams.get("id");
 }
 
+const url = new URL(location.href);
+console.log(url);
+
 const postId = getId();
 
 const fetchPost_URL = `${API_BASE_URL}/api/v1/auction/listings/${postId}?limit=20&_seller=true&_bids=true`;

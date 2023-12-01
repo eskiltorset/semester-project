@@ -5,6 +5,9 @@ const creditAmount = document.getElementById("credit_amount");
 const credits = localStorage.getItem('credits');
 creditAmount.innerHTML = credits;
 
+const url = new URL(location.href);
+console.log(url);
+
 /**
  * Fetches 99 listings from the Rest API
  * @param {string} url Rest API URL for listings
