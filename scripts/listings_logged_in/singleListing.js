@@ -56,7 +56,11 @@ async function fetchPost(url) {
 
             const auctionDate = document.createElement("p");
             auctionDate.classList.add("auctionDate");
-            auctionDate.innerHTML = `Ends at: ${listing.endsAt}`;
+
+            const x = listing.endsAt;
+            const date = new Date(x)
+
+            auctionDate.innerHTML = `Ends at: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 
             const bids = document.createElement("p");
             bids.classList.add("bids");
@@ -70,14 +74,21 @@ async function fetchPost(url) {
             leadingBid.classList.add("leading-bid");
             leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
 
-            const viewBtn = document.createElement("a");
-            viewBtn.classList.add("view-btn", "text-decoration-none");
-            viewBtn.innerHTML = "View listing";
-            viewBtn.id = listing.id;
+            // const viewBtn = document.createElement("a");
+            // viewBtn.classList.add("view-btn", "text-decoration-none");
+            // viewBtn.innerHTML = "View listing";
+            // viewBtn.id = listing.id;
 
+            const bidAmount = document.createElement("input");
+            bidAmount.setAttribute("type", "number");
+            bidAmount.min = 1;
+            bidAmount.classList.add("float-end", "px-3", "py-2", "w-25", "border");
+            bidAmount.placeholder = "Bid amount in credits:"
+            bidAmount.id = listing.id;
+            bidAmount.href = `../singleListing/?id=${listing.id}`; 
 
             const bidBtn = document.createElement("a");
-            bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
+            bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-4", "py-2");
             bidBtn.innerHTML = "Bid";
             bidBtn.id = listing.id;
             bidBtn.href = `../singleListing/?id=${listing.id}`; 
@@ -101,6 +112,8 @@ async function fetchPost(url) {
             listingDiv.appendChild(leadingBid);
             listingDiv.appendChild(seller);
             listingDiv.appendChild(bidBtn);
+            listingDiv.appendChild(bidAmount);
+            
         }
 
         catch(error) {
