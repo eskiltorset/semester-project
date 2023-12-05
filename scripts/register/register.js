@@ -8,11 +8,11 @@ let nameStored = localStorage.getItem('name');
 let emailStored = localStorage.getItem('email');
 let passwordStored = localStorage.getItem('password');
 
-const user = {
-    name: nameStored,
-    email: emailStored,
-    password: passwordStored, 
-};
+// const user = {
+//     name: nameStored,
+//     email: emailStored,
+//     password: passwordStored, 
+// };
 
 /**
  * Registers a new user 
@@ -57,9 +57,9 @@ async function registerUser(url, userData) {
     }
 }
 
-const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
 
-loginForm.addEventListener("submit", async (event) => {
+registerForm.addEventListener("submit", async (event) => {
 
     event.preventDefault();
 

@@ -1,4 +1,10 @@
-import { API_BASE_URL } from "../variables/script.js";
+import { API_BASE_URL, credits } from "../variables/script.js";
+// import { bid } from "../listings_logged_in/bid.js";
+// import { userData } from "../listings_logged_in/bid.js";
+
+const creditAmount = document.getElementById("credit_amount");
+const creditsLS = localStorage.getItem('credits');
+creditAmount.innerHTML = creditsLS;
 
 function getId() {
     const url = new URL(location.href);
@@ -11,6 +17,7 @@ console.log(url);
 const postId = getId();
 
 const fetchPost_URL = `${API_BASE_URL}/api/v1/auction/listings/${postId}?limit=20&_seller=true&_bids=true`;
+const bid_URL = `${API_BASE_URL}/api/v1/auction/listings/${postId}/bids`;
 
 window.onload = fetchPost(fetchPost_URL);
 
@@ -33,6 +40,8 @@ async function fetchPost(url) {
 
             const response = await fetch(url, fetchOptions);
             const json = await response.json();
+
+            console.log(json);
 
             const listing = json;
 
@@ -72,7 +81,10 @@ async function fetchPost(url) {
 
             const leadingBid = document.createElement("p");
             leadingBid.classList.add("leading-bid");
-            leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
+
+            const leadingBidFormula = (listing.bids.length - 1)
+
+            // leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
 
             // const viewBtn = document.createElement("a");
             // viewBtn.classList.add("view-btn", "text-decoration-none");
@@ -81,17 +93,59 @@ async function fetchPost(url) {
 
             const bidAmount = document.createElement("input");
             bidAmount.setAttribute("type", "number");
-            bidAmount.min = 1;
             bidAmount.classList.add("float-end", "px-3", "py-2", "w-25", "border");
-            bidAmount.placeholder = "Bid amount in credits:"
-            bidAmount.id = listing.id;
+            bidAmount.id = "bid_amount";
             bidAmount.href = `../singleListing/?id=${listing.id}`; 
 
             const bidBtn = document.createElement("a");
             bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-4", "py-2");
             bidBtn.innerHTML = "Bid";
             bidBtn.id = listing.id;
-            bidBtn.href = `../singleListing/?id=${listing.id}`; 
+            // bidBtn.href = `../singleListing/?id=${listing.id}`; 
+            // bidBtn.onclick = bid(bid_URL, userData);
+
+            const bidError = document.createElement("p");
+            bidError.classList.add("bid-error");
+            bidError.innerText = "";
+
+            if(listing.bids.length > 0){
+                leadingBid.innerHTML = `Leading bid: ${listing.bids[leadingBidFormula].amount} credits`;
+                bidAmount.placeholder = `Min: ${listing.bids[leadingBidFormula].amount + 1} credits`;
+                bidAmount.min = listing.bids[leadingBidFormula].amount + 1;
+            }
+
+            else if(listing.bids.length < 1){
+                leadingBid.innerHTML = `Leading bid: no bids`;
+                bidAmount.placeholder = `Min: 1 credit`;
+                bidAmount.min = 1;
+            }
+
+
+            bidBtn.addEventListener("click", async (event) => {
+                console.log("clicked");
+
+                //event.preventDefault();
+
+                let bidAmountInput = document.getElementById("bid_amount").value;
+
+                try {
+                    
+                    let bid = {
+                        amount: parseInt(bidAmountInput)
+                    };
+                    console.log(bidAmountInput);
+
+                    await bidOnItem(bid_URL, bid);
+
+                }
+            
+                catch(error) {
+                    console.log(error);
+                }
+
+            });
+
+
 
             itemDiv.appendChild(listingDiv);
 
@@ -113,6 +167,7 @@ async function fetchPost(url) {
             listingDiv.appendChild(seller);
             listingDiv.appendChild(bidBtn);
             listingDiv.appendChild(bidAmount);
+            listingDiv.appendChild(bidError);
             
         }
 
@@ -120,6 +175,54 @@ async function fetchPost(url) {
             console.log(error);
         }
 }
+
+async function bidOnItem(url, userData) {
+
+    const bidError = document.querySelector(".bid-error");
+
+    try {
+        const token = localStorage.getItem("accessToken");
+        
+        const postData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }, 
+            body: JSON.stringify(userData)
+        }
+
+        const response = await fetch(url, postData);
+        console.log(response);
+        const json = await response.json();
+        console.log(json);
+
+        let bidAmount = document.getElementById("bid_amount").value;
+        console.log(bidAmount);  
+
+        if (response.status === 201) {
+            console.log("Bid was successful!");
+            bidError.innerText = "Bid was successful!";
+            bidError.classList.add("text-success");
+            bidError.classList.remove("text-danger");
+            creditsAmount = creditsAmount - bidAmount;
+        }
+
+        else {
+            console.log("Bid failed!");
+            bidError.innerText = json.errors[0].message;
+            bidError.classList.add("text-danger");
+            bidError.classList.remove("text-success");
+        }
+    }
+
+    catch(error) {
+        bidError.innerText = error.errors[0].message;
+        console.log(error);
+    }
+}
+
+
 
 
 
