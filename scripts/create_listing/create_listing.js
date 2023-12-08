@@ -48,6 +48,7 @@ postForm.addEventListener("submit", async (event) => {
 
     let titleMsg = document.querySelector(".title-msg");
     let deadlineMsg = document.querySelector(".deadline-msg");
+    let successfullMsg = document.querySelector(".successfull-msg");
 
     if(titleInput.length > 0 && deadlineInput.length > 0) {
 
@@ -65,7 +66,13 @@ postForm.addEventListener("submit", async (event) => {
 
             await createPost(createPosts_URL, userPost);
 
-            window.location.href = `../singleListing/?id=${json.id}`; ;
+            // window.location.href = `../singleListing/?id=${json.id}`;
+
+            successfullMsg.innerHTML = "Your item was successfully listed!";
+            // deadlineMsg.classList.add("text-success");
+            // deadlineMsg.classList.remove("text-danger");
+            titleMsg.innerHTML = "";
+            deadlineMsg.innerHTML = "";
         }
 
         catch(error) {
@@ -90,6 +97,14 @@ postForm.addEventListener("submit", async (event) => {
 
         if(deadlineInput.length > 0){
             deadlineMsg.innerHTML = "";
+        }
+
+        if(mediaInput.length <= 0){
+            mediaInput.innerHTML = "Media needs to be a valid URL";
+        }
+
+        if(mediaInput.length > 0){
+            mediaInput.innerHTML = "";
         }
     }
 });

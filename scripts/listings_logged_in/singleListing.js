@@ -1,9 +1,9 @@
-import { API_BASE_URL, credits } from "../variables/script.js";
+import { API_BASE_URL } from "../variables/script.js";
 // import { bid } from "../listings_logged_in/bid.js";
 // import { userData } from "../listings_logged_in/bid.js";
 
 const creditAmount = document.getElementById("credit_amount");
-const creditsLS = localStorage.getItem('credits');
+let creditsLS = localStorage.getItem('credits');
 creditAmount.innerHTML = creditsLS;
 
 function getId() {
@@ -74,6 +74,20 @@ async function fetchPost(url) {
             const bids = document.createElement("p");
             bids.classList.add("bids");
             bids.innerHTML = `${listing._count.bids} bids`;
+
+            const viewBids = document.createElement("button");
+            viewBids.setAttribute("type", "button");
+            viewBids.innerText = "View bids";
+            viewBids.dataset.bsToggle = "modal";
+            viewBids.dataset.bsTarget = "#bidsModal";
+            const modalBody = document.querySelector(".modal-body");
+            for(let i = 0; i < listing.bids.length; i++){
+                modalBody.innerHTML += `
+                (${i})   Bid amount: ${listing.bids[i].amount} // made by: ${listing.bids[i].bidderName}<br>
+                `;
+            }
+            
+            viewBids.classList.add("blue-btn");
 
             const seller = document.createElement("h5");
             seller.classList.add("seller");
@@ -146,7 +160,6 @@ async function fetchPost(url) {
             });
 
 
-
             itemDiv.appendChild(listingDiv);
 
             if(listing.media){
@@ -164,6 +177,7 @@ async function fetchPost(url) {
             listingDiv.appendChild(auctionDate);
             listingDiv.appendChild(bids);
             listingDiv.appendChild(leadingBid);
+            listingDiv.append(viewBids);
             listingDiv.appendChild(seller);
             listingDiv.appendChild(bidBtn);
             listingDiv.appendChild(bidAmount);
@@ -200,17 +214,20 @@ async function bidOnItem(url, userData) {
         let bidAmount = document.getElementById("bid_amount").value;
         console.log(bidAmount);  
 
-        if (response.status === 201) {
+        if (response.status === 200) {
             console.log("Bid was successful!");
             bidError.innerText = "Bid was successful!";
             bidError.classList.add("text-success");
             bidError.classList.remove("text-danger");
-            creditsAmount = creditsAmount - bidAmount;
+            creditsLS = creditsLS - bidAmount;
+            console.log(creditsLs);
+
+            localStorage.setItem("credits", creditsLS);
         }
 
         else {
             console.log("Bid failed!");
-            bidError.innerText = json.errors[0].message;
+            bidError.innerText = json.errors.message;
             bidError.classList.add("text-danger");
             bidError.classList.remove("text-success");
         }

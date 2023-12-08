@@ -4,8 +4,7 @@ const loggedInUser = localStorage.getItem("loggedInUser");
 const profileInfo_URL = `${API_BASE_URL}/api/v1/auction/profiles/${loggedInUser}`;
 const fetchPosts_URL = `${API_BASE_URL}/api/v1/auction/profiles/${loggedInUser}/listings?limit=20&_seller=true&_bids=true`;
 
-
-async function fetchInfo(url) {
+export async function fetchInfo(url) {
     try {
       const token = localStorage.getItem("accessToken");
       const fetchOptions = {
@@ -38,6 +37,8 @@ async function fetchInfo(url) {
             credits_profile.innerHTML = `Credits: <br> ${json.credits}`;
             listed_by_you.innerHTML = `Listed by you: <br>${json._count.listings}`;
             bids_won.innerHTML = `Bids won: <br>${json.wins.length}`;
+
+            // localStorage.setItem("creditsss", credits.json);
 
     }
   

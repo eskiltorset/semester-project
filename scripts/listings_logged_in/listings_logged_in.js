@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "../variables/script.js";
 
-const fetchlistings_URL = `${API_BASE_URL}/api/v1/auction/listings?limit=20&_seller=true&_bids=true`;
+const fetchlistings_URL = `${API_BASE_URL}/api/v1/auction/listings?limit=99&_seller=true&_bids=true`;
 const creditAmount = document.getElementById("credit_amount");
 const credits = localStorage.getItem('credits');
 creditAmount.innerHTML = credits;
@@ -72,8 +72,10 @@ async function fetchlistings(url) {
             const leadingBid = document.createElement("p");
             leadingBid.classList.add("leading-bid");
 
+            const leadingBidFormula = (listing.bids.length - 1)
+
             if(listing.bids.length > 0){
-                leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
+                leadingBid.innerHTML = `Leading bid: ${listing.bids[leadingBidFormula].amount} credits`;
             }
 
             else if(listing.bids.length < 1){
@@ -114,27 +116,26 @@ async function fetchlistings(url) {
             listingDiv.appendChild(viewBtn);
             listingDiv.appendChild(bidBtn);
 
-            // // POPULAR FILTER
-            // const popular = document.querySelector("#popular");
-            // popular.addEventListener("change", () => {
+            // POPULAR FILTER
+            const popular = document.querySelector("#popular");
+            popular.addEventListener("click", (event) => {
+                event.preventDefault();
+                
+                    const mostBids = json
+                    .filter(listing => listing.bids.length > 0);
 
-            //     if (popular.checked) {
+                    if(mostBids.includes(listing)){
+                        listingDiv.style.display = "block";
+                    }
 
-            //         const mostComments = json
-            //         .filter(listing => listing.comments.length > 0 || listing.reactions.length > 0);
-
-            //         if(mostComments.includes(listing)){
-            //             listingDiv.style.display = "block";
-            //         }
-
-            //         else{
-            //             listingDiv.style.display = "none";
-            //         }
-            //     }
-            //     else {
-            //         listingDiv.style.display = "block";
-            //     }
-            // });
+                    else{
+                        listingDiv.style.display = "none";
+                    }
+                // }
+                // else {
+                //     listingDiv.style.display = "block";
+                // }
+            });
 
 
             // SEARCH BAR

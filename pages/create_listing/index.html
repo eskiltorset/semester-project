@@ -45,10 +45,12 @@
         </div>
             <h1 class="text-center mt-5">Create Listing</h1>
             <div class="container mt-4 row mx-auto col-10 col-md-8 col-lg-6">
+            <h4 class="successfull-msg text-success text-center"></h4>
             
             <form class="form-horizontal" id="postForm">
+                <h6 class="text-secondary text-center">(*) required fields</h6>
                 <div class="form-group col-sm-8 mx-auto">
-                    <label class="control-label col-sm-2 ms-1 mb-1" for="title">Title:</label>
+                    <label class="control-label col-sm-2 ms-1 mb-1" for="title">* Title:</label>
                     <div class="col-sm-12">
                         <input type="title" class="form-control rounded-0 border" id="title_input" placeholder="Enter title" name="title" >
                         <p class="title-msg text-danger"></p>
@@ -67,13 +69,14 @@
                 </div>
                 </div>
                 <div class="form-group mt-3 col-sm-8 mx-auto">
-                <label class="control-label col-sm-2 ms-1 mb-1 mx-auto" for="media">Media:</label>
+                <label class="control-label col-sm-2 ms-1 mb-1 mx-auto" for="media">* Media:</label>
                 <div class="col-sm-12">          
                     <input type="url" class="form-control rounded-0 border" id="media_input" placeholder="Enter multiple media URLs separated by commas" name="media">
+                    <p class="image-msg text-danger"></p>
                 </div>
                 </div>
                 <div class="form-group col-sm-8 mx-auto">
-                    <label class="control-label col-sm-4 ms-1 mb-1 mt-3" for="deadline">Deadline Date:</label>
+                    <label class="control-label col-sm-4 ms-1 mb-1 mt-3" for="deadline">* Deadline Date:</label>
                     <div class="col-sm-12">
                         <input type="datetime-local" id="deadline_input" name="endsAt">
                         <p class="deadline-msg text-danger"></p>

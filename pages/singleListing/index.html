@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/dist/css/styles.css">
         <script type="module" src="../../scripts/listings_logged_in/singleListing.js" defer></script>
         <script type="module" src="../../scripts/listings_logged_in/bid.js" defer></script>
@@ -15,7 +16,7 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-sm border-bottom">
-                <a class="navbar-brand col-sm-4" href="../index.html">ElectroAuction</a>
+                <a class="navbar-brand col-sm-4" href="../listings_logged_in/index.html">ElectroAuction</a>
                 <div class="w-100">
                     <form class="d-flex input-group w-100 search">
                         <input
@@ -56,7 +57,27 @@
 
             <h1 class="text-center mt-4">Item</h1>
 
+            
+
             <div class="item-div">
+
+                <!-- Modal -->
+                <div class="modal fade" id="bidsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bids made</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
 
             </div>
        

@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://api.noroff.dev";
+import { API_BASE_URL } from "../variables/script.js";
 
 const errorMessage = document.querySelector(".error-message");
 
