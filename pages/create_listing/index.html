@@ -13,11 +13,12 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-sm border-bottom">
-                <a class="navbar-brand col-sm-4" href="../index.html">ElectroAuction</a>
+                <a class="navbar-brand col-sm-4" href="../listings_logged_in/index.html">ElectroAuction</a>
                 <div class="w-100">
                     <form class="d-flex input-group w-100 search">
                         <input
                         type="search"
+                        id="search-focus"
                         class="form-control rounded-0 border"
                         placeholder="Search auctions"
                         aria-label="Search"
@@ -37,12 +38,13 @@
                             <a class="nav-link profile" href="../profile/index.html">Profile</a>
                         </li>
                         <li class="nav-item pe-2 align-self-center">
-                            <a class="nav-link sign-out" href="../index.html">Sign Out</a>
+                            <button class="nav-link sign-out">Sign Out</button>
                         </li>
                     </ul>
                 </div> 
             </nav>
         </div>
+
             <h1 class="text-center mt-5">Create Listing</h1>
             <div class="container mt-4 row mx-auto col-10 col-md-8 col-lg-6">
             <h4 class="successfull-msg text-success text-center"></h4>

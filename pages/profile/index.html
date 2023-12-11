@@ -13,9 +13,9 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-sm border-bottom">
-                <a class="navbar-brand" href="../listings_logged_in/index.html">ElectroAuction</a>
+                <a class="navbar-brand col-sm-4" href="../listings_logged_in/index.html">ElectroAuction</a>
                 <div class="w-100">
-                    <form class="d-flex input-group w-50 search">
+                    <form class="d-flex input-group w-100 search">
                         <input
                         type="search"
                         class="form-control rounded-0 border"
@@ -28,15 +28,19 @@
                         </button>
                     </form>
                 </div>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item px-2">
-                            <a class="nav-link listings" href="../../index.html">Listings</a>
+                <div class="collapse navbar-collapse col-sm-4" id="navbarNav">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item px-2 align-self-center">
+                            <a class="nav-link listings" href="../listings_logged_in/index.html">Listings</a>
+                        </li>
+                        <li class="nav-item pe-2 align-self-center">
+                            <button class="nav-link sign-out">Sign Out</button>
                         </li>
                     </ul>
-                </div>
+                </div> 
             </nav>
         </div>
+
             <div class="profile-background col-sm-8 bg-light mx-auto">
                 <div class="profile-head-section col-sm-8 mx-auto d-flex justify-content-between text-center pt-4">
                     <div class="col-sm-2">

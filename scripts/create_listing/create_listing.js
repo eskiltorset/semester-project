@@ -1,8 +1,12 @@
 import { API_BASE_URL } from "../variables/script.js";
+import { signOut } from "../API/signout.js";
 
 const creditAmount = document.getElementById("credit_amount");
 const credits = localStorage.getItem('credits');
 creditAmount.innerHTML = credits;
+
+const signOutBtn = document.querySelector(".sign-out");
+signOutBtn.onclick = signOut;
 
 const postForm = document.getElementById("postForm");
 

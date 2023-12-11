@@ -1,8 +1,12 @@
 import { API_BASE_URL } from "../variables/script.js";
+import { signOut } from "../API/signout.js";
 
 const loggedInUser = localStorage.getItem("loggedInUser");
 const profileInfo_URL = `${API_BASE_URL}/api/v1/auction/profiles/${loggedInUser}`;
 const fetchPosts_URL = `${API_BASE_URL}/api/v1/auction/profiles/${loggedInUser}/listings?limit=20&_seller=true&_bids=true`;
+
+const signOutBtn = document.querySelector(".sign-out");
+signOutBtn.onclick = signOut;
 
 export async function fetchInfo(url) {
     try {

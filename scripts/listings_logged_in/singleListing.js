@@ -6,6 +6,8 @@ const creditAmount = document.getElementById("credit_amount");
 let creditsLS = localStorage.getItem('credits');
 creditAmount.innerHTML = creditsLS;
 
+const loggedInUser = localStorage.getItem("loggedInUser");
+
 function getId() {
     const url = new URL(location.href);
     return url.searchParams.get("id");
@@ -111,16 +113,19 @@ async function fetchPost(url) {
             bidAmount.id = "bid_amount";
             bidAmount.href = `../singleListing/?id=${listing.id}`; 
 
-            const bidBtn = document.createElement("a");
-            bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-4", "py-2");
+            const bidBtn = document.createElement("button");
+            bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-4", "py-2", "cursor-pointer");
             bidBtn.innerHTML = "Bid";
             bidBtn.id = listing.id;
-            // bidBtn.href = `../singleListing/?id=${listing.id}`; 
-            // bidBtn.onclick = bid(bid_URL, userData);
 
             const bidError = document.createElement("p");
             bidError.classList.add("bid-error");
             bidError.innerText = "";
+
+            const loginBtn =  document.createElement("a");
+            loginBtn.classList.add("loginBtn", "d-none");
+            loginBtn.href = "../../index.html";
+            loginBtn.innerText = "Login now"
 
             if(listing.bids.length > 0){
                 leadingBid.innerHTML = `Leading bid: ${listing.bids[leadingBidFormula].amount} credits`;
@@ -137,8 +142,6 @@ async function fetchPost(url) {
 
             bidBtn.addEventListener("click", async (event) => {
                 console.log("clicked");
-
-                //event.preventDefault();
 
                 let bidAmountInput = document.getElementById("bid_amount").value;
 
@@ -182,7 +185,8 @@ async function fetchPost(url) {
             listingDiv.appendChild(bidBtn);
             listingDiv.appendChild(bidAmount);
             listingDiv.appendChild(bidError);
-            
+            listingDiv.appendChild(loginBtn);
+
         }
 
         catch(error) {
@@ -193,6 +197,7 @@ async function fetchPost(url) {
 async function bidOnItem(url, userData) {
 
     const bidError = document.querySelector(".bid-error");
+    const loginBtn = document.querySelector(".loginBtn");
 
     try {
         const token = localStorage.getItem("accessToken");
@@ -214,8 +219,13 @@ async function bidOnItem(url, userData) {
         let bidAmount = document.getElementById("bid_amount").value;
         console.log(bidAmount);  
 
+        // if(json.errors.message == "undefined"){
+        //     bidError.innerText = "You need to type in a bid amount";
+        //     bidError.classList.add("text-danger");
+        //     bidError.classList.remove("text-success");
+        // }
+
         if (response.status === 200) {
-            console.log("Bid was successful!");
             bidError.innerText = "Bid was successful!";
             bidError.classList.add("text-success");
             bidError.classList.remove("text-danger");
@@ -226,10 +236,20 @@ async function bidOnItem(url, userData) {
         }
 
         else {
-            console.log("Bid failed!");
-            bidError.innerText = json.errors.message;
-            bidError.classList.add("text-danger");
-            bidError.classList.remove("text-success");
+
+            if(loggedInUser === null){
+                loginBtn.classList.remove("d-none");
+                bidError.innerText = "You must be logged in to bid on an item";
+                bidError.classList.add("text-danger");
+                bidError.classList.remove("text-success"); 
+            }
+
+            else {
+                bidError.innerText = json.errors.message;
+                bidError.classList.add("text-danger");
+                bidError.classList.remove("text-success");
+                loginBtn.classList.add("d-none");
+            }
         }
     }
 

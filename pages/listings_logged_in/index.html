@@ -18,6 +18,7 @@
                     <form class="d-flex input-group w-100 search">
                         <input
                         type="search"
+                        id="search-focus"
                         class="form-control rounded-0 border"
                         placeholder="Search auctions"
                         aria-label="Search"
@@ -37,7 +38,7 @@
                             <a class="nav-link profile" href="../profile/index.html">Profile</a>
                         </li>
                         <li class="nav-item pe-2 align-self-center">
-                            <a class="nav-link sign-out" href="../index.html">Sign Out</a>
+                            <button class="nav-link sign-out">Sign Out</button>
                         </li>
                     </ul>
                 </div> 
@@ -50,10 +51,10 @@
         <ul class="nav nav-pills nav-fill col-sm-12 border-bottom">
             <li class="col-sm-2"></li>
             <li class="nav-item active my-2">
-              <a class="nav-link rounded-0 col-sm-4" aria-current="page" href="#">Newest</a>
+              <a class="nav-link rounded-0 col-sm-4" id="newest" aria-current="page" href="#">Newest</a>
             </li>
             <li class="nav-item  my-2">
-              <button class="nav-link rounded-0 col-sm-2" id="popular">Popular</button>
+              <button class="nav-link rounded-0 col-sm-2" id="active">Active Listings</button>
             </li>
             <a href="/pages/create_listing/index.html" class="btn blue-btn my-2">New listing <span class="glyphicon">&#x2b;</span></a>
         </ul>

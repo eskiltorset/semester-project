@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "../variables/script.js";
+import { signOut } from "../API/signout.js";
 
 const fetchlistings_URL = `${API_BASE_URL}/api/v1/auction/listings?limit=99&_seller=true&_bids=true`;
 const creditAmount = document.getElementById("credit_amount");
@@ -7,6 +8,9 @@ creditAmount.innerHTML = credits;
 
 const url = new URL(location.href);
 console.log(url);
+
+const signOutBtn = document.querySelector(".sign-out");
+signOutBtn.onclick = signOut;
 
 /**
  * Fetches 99 listings from the Rest API
@@ -56,14 +60,26 @@ async function fetchlistings(url) {
 
             const auctionDate = document.createElement("p");
             auctionDate.classList.add("auctionDate");
-            auctionDate.innerHTML = `Ends at: ${listing.endsAt}`;
+
+            const dateToday = new Date().toJSON();
+
+            if (dateToday > listing.endsAt){
+                auctionDate.innerHTML = `This auction has ended`;
+                auctionDate.classList.add("text-danger");
+            }
+
+            else if (dateToday < listing.endsAt){
+                const x = listing.endsAt;
+                const date = new Date(x)
+    
+                auctionDate.innerHTML = `Ends at: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            }
+
+           
 
             const bids = document.createElement("p");
             bids.classList.add("bids");
             bids.innerHTML = `${listing._count.bids} bids`;
-
-            const count = listing.bids.length;
-            console.log(count);
 
             const seller = document.createElement("h5");
             seller.classList.add("seller");
@@ -94,6 +110,10 @@ async function fetchlistings(url) {
             bidBtn.id = listing.id;
             bidBtn.href = `../singleListing/?id=${listing.id}`; 
 
+            // if(loggedInUser == null){
+            //     bidBtn.href = `../../index.html`; 
+            // }
+
             listings_section.appendChild(listingDiv);
             //anchor.appendChild(listingDiv);
 
@@ -116,46 +136,53 @@ async function fetchlistings(url) {
             listingDiv.appendChild(viewBtn);
             listingDiv.appendChild(bidBtn);
 
-            // POPULAR FILTER
-            const popular = document.querySelector("#popular");
-            popular.addEventListener("click", (event) => {
+            // ACTIVE FILTER
+            const active = document.querySelector("#active");
+            active.addEventListener("click", (event) => {
                 event.preventDefault();
                 
-                    const mostBids = json
-                    .filter(listing => listing.bids.length > 0);
+                    const activeListings = json
+                    .filter(listing => dateToday < listing.endsAt);
 
-                    if(mostBids.includes(listing)){
+                    if(activeListings.includes(listing)){
                         listingDiv.style.display = "block";
                     }
 
                     else{
                         listingDiv.style.display = "none";
                     }
-                // }
-                // else {
-                //     listingDiv.style.display = "block";
-                // }
             });
 
+            // NEWEST FILTER
+            const newest = document.querySelector("#newest");
+            newest.addEventListener("click", (event) => {
+                event.preventDefault();
+                
+                    listing.sort(listing => dateToday - listing.endsAt); 
+
+                    // newestListings;
+                    console.log(newestListings);
+                    //console.log(listing.endsAt);
+                              
+            });
 
             // SEARCH BAR
-            // const searchInput = document.querySelector("#search-focus");
+            const searchInput = document.querySelector("#search-focus");
 
-            // searchInput.addEventListener("keyup", (event) => {
-            //     const { value } = event.target;
+            searchInput.addEventListener("keyup", (event) => {
+                const { value } = event.target;
             
-            //     const searchQuery = value.toLowerCase();
+                const searchQuery = value.toLowerCase();
               
-            //     let body = listing.body.toLowerCase();
-            //     let title = listing.title.toLowerCase();
+                let title = listing.title.toLowerCase();
               
-            //     if (body.includes(searchQuery) || title.includes(searchQuery)) {
-            //         listingDiv.style.display = "block";
-            //     } 
-            //     else {
-            //         listingDiv.style.display = "none";
-            //     }
-            // });
+                if (title.includes(searchQuery)) {
+                    listingDiv.style.display = "block";
+                } 
+                else {
+                    listingDiv.style.display = "none";
+                }
+            });
 
             }
         }

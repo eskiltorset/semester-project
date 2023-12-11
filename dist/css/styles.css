@@ -11986,6 +11986,11 @@ label {
   color: #0047FF;
 }
 
+.loginBtn {
+  color: #0047FF;
+  border: none;
+}
+
 .profile-background {
   height: 150px;
   background-color: #D2D2D2;
