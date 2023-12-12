@@ -83,80 +83,97 @@ async function fetchListings(url) {
   
               // const anchor = document.createElement("a");
               const listingDiv = document.createElement("div");
-              listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-50", "shadow-sm");
-              listingDiv.style.height = "600px";
-              listingDiv.id = listing.id;  
-  
-              const imageDiv = document.createElement("div");
-              imageDiv.classList.add("image-div", "border", "w-100", "h-50", "bg-dark");
-  
-              const title = document.createElement("h5");
-              title.classList.add("title", "fw-bolder", "mt-2");
-              title.innerHTML = listing.title;
-              
-              const description = document.createElement("p");
-              description.classList.add("description");
-              description.innerHTML = listing.description;
-  
-              const auctionDate = document.createElement("p");
-              auctionDate.classList.add("auctionDate");
-              auctionDate.innerHTML = `Ends at: ${listing.endsAt}`;
-  
-              const bids = document.createElement("p");
-              bids.classList.add("bids");
-              bids.innerHTML = `${listing._count.bids} bids`;
-  
-              const count = listing.bids.length;
-              console.log(count);
-  
-              const seller = document.createElement("h5");
-              seller.classList.add("seller");
-              seller.innerHTML = `@${listing.seller.name}`;
-  
-              const leadingBid = document.createElement("p");
-              leadingBid.classList.add("leading-bid");
-  
-              if(listing.bids.length > 0){
-                  leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
-              }
-  
-              else if(listing.bids.length < 1){
-                  leadingBid.innerHTML = `Leading bid: no bids`;
-              }
-  
-              const viewBtn = document.createElement("a");
-              viewBtn.classList.add("view-btn", "text-decoration-none");
-              viewBtn.innerHTML = "View listing";
-              viewBtn.id = listing.id;
-              //viewBtn.href = `/listing/?id=${listing.id}`; 
-  
-              const bidBtn = document.createElement("a");
-              bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
-              bidBtn.innerHTML = "Bid";
-              bidBtn.id = listing.id;
-              bidBtn.href = `../singleListing/?id=${listing.id}`; 
-  
-              listings_section.appendChild(listingDiv);
-              //anchor.appendChild(listingDiv);
-  
-              if(listing.media){
-                  const listingImg = document.createElement("img"); 
-                  listingImg.classList.add("w-100", "object-fit-cover", "h-100");
-                  listingImg.alt = "Auction Image";
-                  listingImg.src = listing.media;
-  
-                  imageDiv.appendChild(listingImg);
-              }
-  
-              listingDiv.appendChild(imageDiv);
-              listingDiv.appendChild(title);
-              listingDiv.appendChild(description);
-              listingDiv.appendChild(auctionDate);
-              listingDiv.appendChild(bids);
-              listingDiv.appendChild(leadingBid);
-              listingDiv.appendChild(seller);
-              listingDiv.appendChild(viewBtn);
-              listingDiv.appendChild(bidBtn);
+            listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-50", "shadow-sm");
+            listingDiv.style.height = "560px";
+            listingDiv.id = listing.id;  
+
+            const imageDiv = document.createElement("div");
+            imageDiv.classList.add("image-div", "border", "w-100", "h-50", "bg-dark");
+
+            const title = document.createElement("h5");
+            title.classList.add("title", "fw-bolder", "mt-2");
+            title.innerHTML = listing.title;
+            
+            const description = document.createElement("p");
+            description.classList.add("description", "small", "text-truncate");
+            description.innerHTML = listing.description;
+
+            const auctionDate = document.createElement("p");
+            auctionDate.classList.add("auctionDate");
+
+            const dateToday = new Date().toJSON();
+
+            if (dateToday > listing.endsAt){
+                auctionDate.innerHTML = `This auction has ended`;
+                auctionDate.classList.add("text-danger");
+            }
+
+            else if (dateToday < listing.endsAt){
+                const x = listing.endsAt;
+                const date = new Date(x)
+    
+                auctionDate.innerHTML = `Ends at: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            }
+
+           
+
+            const bids = document.createElement("p");
+            bids.classList.add("bids", "text-secondary");
+            bids.innerHTML = `${listing._count.bids} bid(s)`;
+
+            const seller = document.createElement("h6");
+            seller.classList.add("seller");
+            seller.innerHTML = `Listed by: <br><span class="text-secondary">@${listing.seller.name}</span>`;
+
+            const leadingBid = document.createElement("p");
+            leadingBid.classList.add("leading-bid");
+
+            const leadingBidFormula = (listing.bids.length - 1)
+
+            if(listing.bids.length > 0){
+                leadingBid.innerHTML = `Leading bid: <span class="leadingBid">${listing.bids[leadingBidFormula].amount} credits</span>`;
+            }
+
+            else if(listing.bids.length < 1){
+                leadingBid.innerHTML = `Leading bid: no bids`;
+            }
+
+            // const viewBtn = document.createElement("a");
+            // viewBtn.classList.add("view-btn", "text-decoration-none");
+            // viewBtn.innerHTML = "View listing";
+            // viewBtn.id = listing.id;
+            //viewBtn.href = `/listing/?id=${listing.id}`; 
+
+            const viewBtn = document.createElement("a");
+            viewBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
+            viewBtn.innerHTML = "View";
+            viewBtn.id = listing.id;
+            viewBtn.href = `../singleListing/?id=${listing.id}`; 
+
+            // if(loggedInUser == null){
+            //     viewBtn.href = `../../index.html`; 
+            // }
+
+            listings_section.appendChild(listingDiv);
+            //anchor.appendChild(listingDiv);
+
+            if(listing.media){
+                const listingImg = document.createElement("img"); 
+                listingImg.classList.add("w-100", "object-fit-cover", "h-100");
+                listingImg.alt = "Auction Image";
+                listingImg.src = listing.media;
+
+                imageDiv.appendChild(listingImg);
+            }
+
+            listingDiv.appendChild(imageDiv);
+            listingDiv.appendChild(title);
+            listingDiv.appendChild(description);
+            listingDiv.appendChild(auctionDate);
+            listingDiv.appendChild(bids);
+            listingDiv.appendChild(leadingBid);
+            listingDiv.appendChild(seller);
+            listingDiv.appendChild(viewBtn);
 
             }
         }

@@ -11978,10 +11978,6 @@ label {
   top: -0.5em;
 }
 
-.view-btn {
-  color: black;
-}
-
 .auctionDate {
   color: #0047FF;
 }
@@ -11989,6 +11985,11 @@ label {
 .loginBtn {
   color: #0047FF;
   border: none;
+}
+
+.leadingBid {
+  color: #A93465;
+  font-weight: bold;
 }
 
 .profile-background {

@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../variables/script.js";
 // import { userData } from "../listings_logged_in/bid.js";
 
 const creditAmount = document.getElementById("credit_amount");
-let creditsLS = localStorage.getItem('credits');
+const creditsLS = localStorage.getItem('credits');
 creditAmount.innerHTML = creditsLS;
 
 const loggedInUser = localStorage.getItem("loggedInUser");
@@ -143,7 +143,7 @@ async function fetchPost(url) {
             bidBtn.addEventListener("click", async (event) => {
                 console.log("clicked");
 
-                let bidAmountInput = document.getElementById("bid_amount").value;
+                const bidAmountInput = document.getElementById("bid_amount").value;
 
                 try {
                     
@@ -226,13 +226,16 @@ async function bidOnItem(url, userData) {
         // }
 
         if (response.status === 200) {
+
+            const newCredit = creditsLS - bidAmount;
+            console.log(newCredit);
+
+            localStorage.setItem("credits", newCredit);
+
             bidError.innerText = "Bid was successful!";
             bidError.classList.add("text-success");
             bidError.classList.remove("text-danger");
-            creditsLS = creditsLS - bidAmount;
-            console.log(creditsLs);
-
-            localStorage.setItem("credits", creditsLS);
+            
         }
 
         else {

@@ -125,10 +125,6 @@ label {
 
 // Listing page
 
-.view-btn {
-    color: black;
-}
-
 .auctionDate {
     color: $secondary;
 }
@@ -138,12 +134,24 @@ label {
     border: none;
 }
 
+.leadingBid {
+    color: $third;
+    font-weight: bold;
+}
+
+// #popular, #active:focus {
+//     color:  $secondary;
+// }
+
 // Profile Page
 
 .profile-background {
     height: 150px;
     background-color: $fourth;
 }
+
+
+
 
 
 

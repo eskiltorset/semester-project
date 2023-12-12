@@ -44,7 +44,7 @@ async function fetchlistings(url) {
             // const anchor = document.createElement("a");
             const listingDiv = document.createElement("div");
             listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-50", "shadow-sm");
-            listingDiv.style.height = "600px";
+            listingDiv.style.height = "560px";
             listingDiv.id = listing.id;  
 
             const imageDiv = document.createElement("div");
@@ -55,7 +55,7 @@ async function fetchlistings(url) {
             title.innerHTML = listing.title;
             
             const description = document.createElement("p");
-            description.classList.add("description");
+            description.classList.add("description", "small", "text-truncate");
             description.innerHTML = listing.description;
 
             const auctionDate = document.createElement("p");
@@ -78,12 +78,12 @@ async function fetchlistings(url) {
            
 
             const bids = document.createElement("p");
-            bids.classList.add("bids");
-            bids.innerHTML = `${listing._count.bids} bids`;
+            bids.classList.add("bids", "text-secondary");
+            bids.innerHTML = `${listing._count.bids} bid(s)`;
 
-            const seller = document.createElement("h5");
+            const seller = document.createElement("h6");
             seller.classList.add("seller");
-            seller.innerHTML = `@${listing.seller.name}`;
+            seller.innerHTML = `Listed by: <br><span class="text-secondary">@${listing.seller.name}</span>`;
 
             const leadingBid = document.createElement("p");
             leadingBid.classList.add("leading-bid");
@@ -91,17 +91,17 @@ async function fetchlistings(url) {
             const leadingBidFormula = (listing.bids.length - 1)
 
             if(listing.bids.length > 0){
-                leadingBid.innerHTML = `Leading bid: ${listing.bids[leadingBidFormula].amount} credits`;
+                leadingBid.innerHTML = `Leading bid: <span class="leadingBid">${listing.bids[leadingBidFormula].amount} credits</span>`;
             }
 
             else if(listing.bids.length < 1){
                 leadingBid.innerHTML = `Leading bid: no bids`;
             }
 
-            const viewBtn = document.createElement("a");
-            viewBtn.classList.add("view-btn", "text-decoration-none");
-            viewBtn.innerHTML = "View listing";
-            viewBtn.id = listing.id;
+            // const viewBtn = document.createElement("a");
+            // viewBtn.classList.add("view-btn", "text-decoration-none");
+            // viewBtn.innerHTML = "View listing";
+            // viewBtn.id = listing.id;
             //viewBtn.href = `/listing/?id=${listing.id}`; 
 
             const bidBtn = document.createElement("a");
@@ -133,19 +133,24 @@ async function fetchlistings(url) {
             listingDiv.appendChild(bids);
             listingDiv.appendChild(leadingBid);
             listingDiv.appendChild(seller);
-            listingDiv.appendChild(viewBtn);
+            // listingDiv.appendChild(viewBtn);
             listingDiv.appendChild(bidBtn);
 
             // ACTIVE FILTER
             const active = document.querySelector("#active");
+            const popular = document.querySelector("#popular");
             active.addEventListener("click", (event) => {
                 event.preventDefault();
+
+                active.classList.add("text-secondary");
+                popular.classList.remove("text-secondary");
                 
                     const activeListings = json
                     .filter(listing => dateToday < listing.endsAt);
 
                     if(activeListings.includes(listing)){
                         listingDiv.style.display = "block";
+                        
                     }
 
                     else{
@@ -153,16 +158,23 @@ async function fetchlistings(url) {
                     }
             });
 
-            // NEWEST FILTER
-            const newest = document.querySelector("#newest");
-            newest.addEventListener("click", (event) => {
+            // POPULAR FILTER
+            popular.addEventListener("click", (event) => {
                 event.preventDefault();
-                
-                    listing.sort(listing => dateToday - listing.endsAt); 
 
-                    // newestListings;
-                    console.log(newestListings);
-                    //console.log(listing.endsAt);
+                popular.classList.add("text-secondary");
+                active.classList.remove("text-secondary");
+
+                const mostBids = json
+                .filter(listing => listing.bids.length > 10 && dateToday < listing.endsAt);
+
+                    if(mostBids.includes(listing)){
+                        listingDiv.style.display = "block";
+                    }
+
+                    else{
+                        listingDiv.style.display = "none";
+                    }
                               
             });
 
