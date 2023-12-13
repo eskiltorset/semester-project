@@ -129,9 +129,10 @@ label {
     color: $secondary;
 }
 
-.loginBtn {
+.loginBtn, .editAvatar2, .viewBids {
     color: $secondary;
     border: none;
+    background-color: transparent;
 }
 
 .leadingBid {
@@ -146,7 +147,7 @@ label {
 // Profile Page
 
 .profile-background {
-    height: 150px;
+    height: 200px;
     background-color: $fourth;
 }
 

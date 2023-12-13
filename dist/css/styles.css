@@ -11982,9 +11982,10 @@ label {
   color: #0047FF;
 }
 
-.loginBtn {
+.loginBtn, .editAvatar2, .viewBids {
   color: #0047FF;
   border: none;
+  background-color: transparent;
 }
 
 .leadingBid {
@@ -11993,7 +11994,7 @@ label {
 }
 
 .profile-background {
-  height: 150px;
+  height: 200px;
   background-color: #D2D2D2;
 }
 

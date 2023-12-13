@@ -51,7 +51,7 @@ async function fetchlistings(url) {
             imageDiv.classList.add("image-div", "border", "w-100", "h-50", "bg-dark");
 
             const title = document.createElement("h5");
-            title.classList.add("title", "fw-bolder", "mt-2");
+            title.classList.add("title", "fw-bolder", "mt-2", "text-truncate");
             title.innerHTML = listing.title;
             
             const description = document.createElement("p");

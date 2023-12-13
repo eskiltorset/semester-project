@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../variables/script.js";
 import { signOut } from "../API/signout.js";
+import { update } from "../API/update.js";
 
 const loggedInUser = localStorage.getItem("loggedInUser");
 const profileInfo_URL = `${API_BASE_URL}/api/v1/auction/profiles/${loggedInUser}`;
@@ -34,7 +35,7 @@ export async function fetchInfo(url) {
           }
     
           else if(json.avatar != null){
-            avatar.src = json.seller.avatar;
+            avatar.src = json.avatar;
           }
            
             username.innerHTML = `@${json.name}`;
@@ -42,7 +43,30 @@ export async function fetchInfo(url) {
             listed_by_you.innerHTML = `Listed by you: <br>${json._count.listings}`;
             bids_won.innerHTML = `Bids won: <br>${json.wins.length}`;
 
-            // localStorage.setItem("creditsss", credits.json);
+            const editBtn = document.querySelector(".updateAvatar")
+            editBtn.addEventListener("click", async () => {
+                const newAvatarInput = document.getElementById("newAvatar");
+                const avatarMsg = document.querySelector(".avatarMsg");
+                const avatarToUpdate = json.avatar;
+                console.log("clicked");
+                try{
+                    await update(avatarToUpdate, {
+                        avatar: newAvatarInput.value
+                    });
+                    console.log("Update succeeded")
+                    avatarMsg.innerText = "Update successfull!";
+
+                    function reload(){
+                        location.reload();
+                    }
+        
+                    setTimeout(reload, 1500);
+                }
+                catch(error){
+                    console.log(error);
+                }
+                
+            });
 
     }
   
@@ -137,12 +161,6 @@ async function fetchListings(url) {
             else if(listing.bids.length < 1){
                 leadingBid.innerHTML = `Leading bid: no bids`;
             }
-
-            // const viewBtn = document.createElement("a");
-            // viewBtn.classList.add("view-btn", "text-decoration-none");
-            // viewBtn.innerHTML = "View listing";
-            // viewBtn.id = listing.id;
-            //viewBtn.href = `/listing/?id=${listing.id}`; 
 
             const viewBtn = document.createElement("a");
             viewBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
