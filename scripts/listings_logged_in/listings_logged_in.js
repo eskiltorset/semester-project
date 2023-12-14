@@ -41,10 +41,9 @@ async function fetchlistings(url) {
 
         if(listing.title){
 
-            // const anchor = document.createElement("a");
             const listingDiv = document.createElement("div");
             listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-50", "shadow-sm");
-            listingDiv.style.height = "560px";
+            listingDiv.style.height = "620px";
             listingDiv.id = listing.id;  
 
             const imageDiv = document.createElement("div");
@@ -64,7 +63,7 @@ async function fetchlistings(url) {
             const dateToday = new Date().toJSON();
 
             if (dateToday > listing.endsAt){
-                auctionDate.innerHTML = `This auction has ended`;
+                auctionDate.innerHTML = `<br>This auction has ended`;
                 auctionDate.classList.add("text-danger");
             }
 
@@ -72,7 +71,7 @@ async function fetchlistings(url) {
                 const x = listing.endsAt;
                 const date = new Date(x)
     
-                auctionDate.innerHTML = `Ends at: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+                auctionDate.innerHTML = `Ends at: <br>${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
             }
 
            
@@ -91,7 +90,7 @@ async function fetchlistings(url) {
             const leadingBidFormula = (listing.bids.length - 1)
 
             if(listing.bids.length > 0){
-                leadingBid.innerHTML = `Leading bid: <span class="leadingBid">${listing.bids[leadingBidFormula].amount} credits</span>`;
+                leadingBid.innerHTML = `Leading bid: <span class="leadingBid">${listing.bids[leadingBidFormula].amount}c</span>`;
             }
 
             else if(listing.bids.length < 1){

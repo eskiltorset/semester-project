@@ -11998,4 +11998,10 @@ label {
   background-color: #D2D2D2;
 }
 
+@media screen and (min-width: 847px) {
+  .bid-btn {
+    margin-bottom: 100px;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
