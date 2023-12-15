@@ -10,9 +10,9 @@ The goal of the project is : "To take the skills learned over the past three sem
 
 ## The assignment has these required features:
 
-A user with a stud.noroff.no email may register
-A registered user may login
-A registered user may logout
+- A user with a stud.noroff.no email may register
+- A registered user may login
+- A registered user may logout
 A registered user may update their avatar
 A registered user may view their total credit
 A registered user may create a Listing with a title, deadline date, media gallery and description
