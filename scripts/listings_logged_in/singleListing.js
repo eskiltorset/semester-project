@@ -1,12 +1,16 @@
 import { API_BASE_URL } from "../variables/script.js";
 import { remove } from "../API/remove.js";
 import { update } from "../API/update.js";
+import { signOut } from "../API/signout.js";
 
 const creditAmount = document.getElementById("credit_amount");
 const creditsLS = localStorage.getItem('credits');
 creditAmount.innerHTML = creditsLS;
 
 const loggedInUser = localStorage.getItem("loggedInUser");
+
+const signOutBtn = document.querySelector(".sign-out");
+signOutBtn.onclick = signOut;
 
 function getId() {
     const url = new URL(location.href);

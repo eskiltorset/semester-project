@@ -129,10 +129,14 @@ label {
     color: $secondary;
 }
 
-.loginBtn, .editAvatar2, .viewBids {
+.loginBtn, .editAvatar2, .viewBids, .back-btn {
     color: $secondary;
     border: none;
     background-color: transparent;
+}
+
+.loginBtn, .editAvatar2, .viewBids, .back-btn:hover {
+    color: $secondary;
 }
 
 .leadingBid {

@@ -13,23 +13,12 @@
     </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-expand-sm border-bottom">
-                <a class="navbar-brand col-sm-4" href="../listings_logged_in/index.html">ElectroAuction</a>
-                <div class="w-100">
-                    <form class="d-flex input-group w-100 search">
-                        <input
-                        type="search"
-                        class="form-control rounded-0 border"
-                        placeholder="Search auctions"
-                        aria-label="Search"
-                        aria-describedby="search-addon"
-                        />
-                        <button class="input-group-text blue-btn rounded-0" id="search-addon">
-                        Search
-                        </button>
-                    </form>
-                </div>
-                <div class="collapse navbar-collapse col-sm-4" id="navbarNav">
+            <nav class="navbar navbar-expand-md border-bottom">
+                <a class="navbar-brand col-4" href="../listings_logged_in/index.html">ElectroAuction</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">  
                     <ul class="navbar-nav ms-auto text-center">
                         <li class="nav-item px-2 align-self-center">
                             <a class="nav-link listings" href="../listings_logged_in/index.html">Listings</a>
@@ -42,23 +31,23 @@
             </nav>
         </div>
 
-            <div class="profile-background col-sm-8 bg-light mx-auto">
-                <div class="profile-head-section col-sm-8 mx-auto d-flex justify-content-between text-center pt-4">
-                    <div class="col-sm-2">
-                        <img class="rounded-circle h-25 avatar" alt="avatar" src=""/>
-                        <p class="username mt-2">@</p>
+            <div class="profile-background col-12 col-sm-10 bg-light mx-auto">
+                <div class="profile-head-section col-12 mx-auto d-flex justify-content-between text-center pt-4 h-100">
+                    <div class="col-3">
+                        <img class="rounded-circle h-50 avatar" alt="avatar" src=""/>
+                        <p class="username mt-2 mb-0">@</p>
                         <button type="button" class="btn editAvatar2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Edit Avatar
                         </button>
                     </div>
-                    <p class="credits-profile col-sm-2 mt-5">Credits: <br></p>
-                    <p class="listed-by-you col-sm-2 mt-5">Listed by you: <br></p>
-                    <p class="bids-won col-sm-2 mt-5">Bids won: <br></p>
+                    <p class="credits-profile col-3 mt-5">Credits: <br></p>
+                    <p class="listed-by-you col-3 mt-5">Listed by you: <br></p>
+                    <p class="bids-won col-3 mt-5">Bids won: <br></p>
                 </div>
             </div>
 
             <h1 class="text-center mt-3">Your listings</h1>
-            <div id="listings_section" class="listings-section d-flex flex-wrap justify-content-center col-sm-6 mb-4 mx-auto">
+            <div id="listings_section" class="listings-section d-flex flex-wrap justify-content-center col-12 col-sm-10 col-md-8 col-lg-6 mb-4 mx-auto">
                      
                 <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

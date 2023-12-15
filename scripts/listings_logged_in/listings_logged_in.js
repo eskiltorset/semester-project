@@ -74,8 +74,6 @@ async function fetchlistings(url) {
                 auctionDate.innerHTML = `Ends at: <br>${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
             }
 
-           
-
             const bids = document.createElement("p");
             bids.classList.add("bids", "text-secondary");
             bids.innerHTML = `${listing._count.bids} bid(s)`;
@@ -202,8 +200,6 @@ async function fetchlistings(url) {
     catch(error) {
         console.log(error);
     }
-       
-    
 }
   
 fetchlistings(fetchlistings_URL);

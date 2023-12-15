@@ -11982,10 +11982,14 @@ label {
   color: #0047FF;
 }
 
-.loginBtn, .editAvatar2, .viewBids {
+.loginBtn, .editAvatar2, .viewBids, .back-btn {
   color: #0047FF;
   border: none;
   background-color: transparent;
+}
+
+.loginBtn, .editAvatar2, .viewBids, .back-btn:hover {
+  color: #0047FF;
 }
 
 .leadingBid {
