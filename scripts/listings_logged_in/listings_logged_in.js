@@ -10,7 +10,9 @@ const url = new URL(location.href);
 console.log(url);
 
 const signOutBtn = document.querySelector(".sign-out");
-signOutBtn.onclick = signOut;
+signOutBtn.onclick = signOut;  
+
+const loggedInUser = localStorage.getItem("loggedInUser");
 
 /**
  * Fetches 99 listings from the Rest API
@@ -107,9 +109,15 @@ async function fetchlistings(url) {
             bidBtn.id = listing.id;
             bidBtn.href = `../singleListing/?id=${listing.id}`; 
 
-            // if(loggedInUser == null){
-            //     bidBtn.href = `../../index.html`; 
-            // }
+            const profileLink = document.querySelector(".profile");
+            const creditsShown = document.querySelector(".credits");
+
+            if(loggedInUser == null){
+                profileLink.innerText = "Login";
+                profileLink.href = "../../index.html"
+                creditsShown.classList.add("d-none");
+                signOutBtn.classList.add("d-none");
+            }
 
             listings_section.appendChild(listingDiv);
             //anchor.appendChild(listingDiv);

@@ -55,8 +55,19 @@ async function fetchPost(url) {
 
             const listingDiv = document.createElement("div");
             listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-75", "shadow-sm", "mx-auto");
-            listingDiv.style.height = "600px";
+            listingDiv.style.height = "630px";
             listingDiv.id = listing.id;  
+
+            const profileLink = document.querySelector(".profile");
+            const creditsShown = document.querySelector(".credits");
+            // const signout = document.querySelector(".sign-out");
+
+            if(loggedInUser == null){
+                profileLink.innerText = "Login";
+                profileLink.href = "../../index.html"
+                creditsShown.classList.add("d-none");
+                signOutBtn.classList.add("d-none");
+            }
 
             const imageDiv = document.createElement("div");
             imageDiv.classList.add("image-div", "border", "w-100", "h-50", "bg-dark");
@@ -71,11 +82,6 @@ async function fetchPost(url) {
 
             const auctionDate = document.createElement("p");
             auctionDate.classList.add("auctionDate");
-
-            const x = listing.endsAt;
-            const date = new Date(x);
-
-            auctionDate.innerHTML = `Ends at: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 
             const bids = document.createElement("p");
             bids.classList.add("bids");
@@ -121,12 +127,28 @@ async function fetchPost(url) {
             bidBtn.innerHTML = "Bid";
             bidBtn.id = listing.id;
 
+            const dateToday = new Date().toJSON();
+
+            if (dateToday > listing.endsAt){
+                auctionDate.innerHTML = `<br>This auction has ended`;
+                auctionDate.classList.add("text-danger");
+                bidBtn.classList.add("d-none");
+                bidAmount.classList.add("d-none");
+            }
+
+            else if (dateToday < listing.endsAt){
+                const x = listing.endsAt;
+                const date = new Date(x)
+    
+                auctionDate.innerHTML = `Ends at: <br>${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            }
+
             const bidError = document.createElement("p");
             bidError.classList.add("bid-error");
             bidError.innerText = "";
 
             const loginBtn =  document.createElement("a");
-            loginBtn.classList.add("loginBtn", "d-none");
+            loginBtn.classList.add("loginBtn", "d-none", "mt-0");
             loginBtn.href = "../../index.html";
             loginBtn.innerText = "Login now";
 
@@ -152,63 +174,6 @@ async function fetchPost(url) {
 
             });
 
-            // const editBtn = document.createElement("button");
-            //     editBtn.classList.add("edit-btn", "red-btn", "float-end", "mx-2");
-            //     editBtn.innerHTML = "Edit post";
-            //     editBtn.addEventListener("click", async () => {
-            //         const postToUpdate = removeBtn.id;
-            //         try{
-            //             await update(postToUpdate, {
-            //                 title: "Updated title",
-            //                 body: "Updated text",
-            //                 media: "https://picsum.photos/200"
-            //             });
-            //             console.log("Test succeed")
-            //         }
-            //         catch(error){
-            //             console.log(error);
-            //         }
-                    
-            //     });
-
-            // const removeBtn = document.createElement("button");
-            // removeBtn.classList.add("remove_btn", "red-btn", "float-end", "mx-2");
-            // removeBtn.id = json.id;
-            // removeBtn.innerHTML = "Delete post";
-            // removeBtn.addEventListener("click", async () => {
-            //     try{
-            //         await remove(removeBtn.id);
-            //         console.log("post deleted");
-            //         const deletedMsg = document.querySelector(".deleted-msg");
-            //         deletedMsg.innerHTML = "Post deleted!";
-
-            //         function reload(){
-            //             location.href = "/listings_logged_in.js";
-            //         }
-        
-            //         setTimeout(reload, 1500);
-
-            //     }
-            //     catch (error){
-            //         console.log(error);
-            //     };
-                
-            // });
-
-            // const viewBids = document.createElement("button");
-            // viewBids.setAttribute("type", "button");
-            // viewBids.innerText = "View bids";
-            // viewBids.dataset.bsToggle = "modal";
-            // viewBids.dataset.bsTarget = "#bidsModal";
-            // const modalBody = document.querySelector(".modal-body");
-            // for(let i = 0; i < listing.bids.length; i++){
-            //     modalBody.innerHTML += `
-            //     (${i})   Bid amount: ${listing.bids[i].amount} // made by: ${listing.bids[i].bidderName}<br>
-            //     `;
-            // }
-            // viewBids.classList.add("viewBids", "mb-2", "p-0");
-
-
             itemDiv.appendChild(listingDiv);
 
             if(listing.bids.length > 0){
@@ -222,7 +187,6 @@ async function fetchPost(url) {
                 leadingBid.innerHTML = `Leading bid: no bids`;
                 bidAmount.placeholder = `Min: 1 credit`;
                 bidAmount.min = 1;
-                // listingDiv.remove(viewBids);
             }
 
             if(listing.media){
@@ -285,12 +249,6 @@ async function bidOnItem(url, userData) {
 
         let bidAmount = document.getElementById("bid_amount").value;
         console.log(bidAmount);  
-
-        // if(json.errors.message == "undefined"){
-        //     bidError.innerText = "You need to type in a bid amount";
-        //     bidError.classList.add("text-danger");
-        //     bidError.classList.remove("text-success");
-        // }
 
         if (response.status === 200) {
 
