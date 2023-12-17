@@ -1,19 +1,31 @@
 import { API_BASE_URL } from "../variables/script.js";
 import { signOut } from "../API/signout.js";
 
+const loggedInUser = localStorage.getItem("loggedInUser");
+
 const creditAmount = document.getElementById("credit_amount");
 const credits = localStorage.getItem('credits');
 creditAmount.innerHTML = credits;
+
+const profileLink = document.querySelector(".profile");
+const creditsShown = document.querySelector(".credits");
 
 const signOutBtn = document.querySelector(".sign-out");
 signOutBtn.onclick = signOut;
 
 const postForm = document.getElementById("postForm");
 
+if(loggedInUser == null){
+    profileLink.innerText = "Login";
+    profileLink.href = "../../index.html"
+    creditsShown.classList.add("d-none");
+    signOutBtn.classList.add("d-none");
+}
+
 /**
- * Creates a post which is saved in the Rest API
- * @param {string} url Rest API URL for 'post' posts
- * @param {string} postData Data of post input
+ * Creates a listing which is saved in the Rest API
+ * @param {string} url Rest API URL for 'POST' listings
+ * @param {string} postData Data of listing input
  * @returns {string} The post to the Rest API URL if the requirements are met
  */
 async function createPost(url, postData) {
@@ -70,19 +82,13 @@ postForm.addEventListener("submit", async (event) => {
 
             await createPost(createPosts_URL, userPost);
 
-            // window.location.href = `../singleListing/?id=${json.id}`;
-
             successfullMsg.innerHTML = "Your item was successfully listed!";
-            // deadlineMsg.classList.add("text-success");
-            // deadlineMsg.classList.remove("text-danger");
             titleMsg.innerHTML = "";
             deadlineMsg.innerHTML = "";
         }
 
         catch(error) {
             console.log(error);
-            // titleMsg.innerHTML = "You need to write a title";
-            // deadlineMsg.innerHTML = "You need to specify the deadline date";
         }
     }
 

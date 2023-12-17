@@ -8,12 +8,6 @@ let nameStored = localStorage.getItem('name');
 let emailStored = localStorage.getItem('email');
 let passwordStored = localStorage.getItem('password');
 
-// const user = {
-//     name: nameStored,
-//     email: emailStored,
-//     password: passwordStored, 
-// };
-
 /**
  * Registers a new user 
  * @param {string} url Rest API URL for register 
@@ -52,7 +46,6 @@ async function registerUser(url, userData) {
 
     } catch (error) {
         errorMessage.innerHTML = error.errors[0].message;
-        
         console.log(error);
     }
 }
@@ -80,7 +73,6 @@ registerForm.addEventListener("submit", async (event) => {
 
         catch(error) {
             console.log(error);
-            errorMessage.innerHTML = "lol";
         }
 });
 

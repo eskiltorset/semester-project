@@ -97,12 +97,6 @@ async function fetchlistings(url) {
                 leadingBid.innerHTML = `Leading bid: no bids`;
             }
 
-            // const viewBtn = document.createElement("a");
-            // viewBtn.classList.add("view-btn", "text-decoration-none");
-            // viewBtn.innerHTML = "View listing";
-            // viewBtn.id = listing.id;
-            //viewBtn.href = `/listing/?id=${listing.id}`; 
-
             const bidBtn = document.createElement("a");
             bidBtn.classList.add("bid-btn", "text-decoration-none", "float-end", "red-btn", "px-3");
             bidBtn.innerHTML = "Bid";
@@ -120,7 +114,6 @@ async function fetchlistings(url) {
             }
 
             listings_section.appendChild(listingDiv);
-            //anchor.appendChild(listingDiv);
 
             if(listing.media){
                 const listingImg = document.createElement("img"); 
@@ -138,7 +131,6 @@ async function fetchlistings(url) {
             listingDiv.appendChild(bids);
             listingDiv.appendChild(leadingBid);
             listingDiv.appendChild(seller);
-            // listingDiv.appendChild(viewBtn);
             listingDiv.appendChild(bidBtn);
 
             // ACTIVE FILTER

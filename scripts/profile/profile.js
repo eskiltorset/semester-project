@@ -9,6 +9,11 @@ const fetchPosts_URL = `${API_BASE_URL}/api/v1/auction/profiles/${loggedInUser}/
 const signOutBtn = document.querySelector(".sign-out");
 signOutBtn.onclick = signOut;
 
+/**
+ * Fetches a users profile info
+ * @param {string} url Rest API URL for profile info
+ * @returns {string} information about the logged in user
+ */
 export async function fetchInfo(url) {
     try {
       const token = localStorage.getItem("accessToken");
@@ -60,10 +65,13 @@ export async function fetchInfo(url) {
                         location.reload();
                     }
         
-                    setTimeout(reload, 1500);
+                    setTimeout(reload, 500);
                 }
                 catch(error){
                     console.log(error);
+                    avatarMsg.innerText = "You need to pass a valid URL";
+                    avatarMsg.classList.add("text-danger");
+                    avatarMsg.classList.remove("text-success");
                 }
                 
             });
@@ -78,7 +86,7 @@ export async function fetchInfo(url) {
 fetchInfo(profileInfo_URL);
 
 /**
- * Fetches a users own posts from the Rest API
+ * Fetches a users own listings from the Rest API
  * @param {string} url Rest API URL for profile
  * @returns {string} All posts the user has posted in the Rest API URL
  */
@@ -105,8 +113,7 @@ async function fetchListings(url) {
   
           if(listing.title){
   
-              // const anchor = document.createElement("a");
-              const listingDiv = document.createElement("div");
+            const listingDiv = document.createElement("div");
             listingDiv.classList.add("listing-div", "p-4", "border", "mt-3", "w-50", "shadow-sm");
             listingDiv.style.height = "560px";
             listingDiv.id = listing.id;  
@@ -168,12 +175,7 @@ async function fetchListings(url) {
             viewBtn.id = listing.id;
             viewBtn.href = `../singleListing/?id=${listing.id}`; 
 
-            // if(loggedInUser == null){
-            //     viewBtn.href = `../../index.html`; 
-            // }
-
             listings_section.appendChild(listingDiv);
-            //anchor.appendChild(listingDiv);
 
             if(listing.media){
                 const listingImg = document.createElement("img"); 

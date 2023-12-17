@@ -1,6 +1,4 @@
 import { API_BASE_URL } from "../variables/script.js";
-import { remove } from "../API/remove.js";
-import { update } from "../API/update.js";
 import { signOut } from "../API/signout.js";
 
 const creditAmount = document.getElementById("credit_amount");
@@ -28,9 +26,9 @@ const bid_URL = `${API_BASE_URL}/api/v1/auction/listings/${postId}/bids`;
 window.onload = fetchPost(fetchPost_URL);
 
 /**
- * Fetches the viewed post by ID
- * @param {string} url Rest API URL for post by ID 
- * @returns {string} The post that is clicked by the user
+ * Fetches the viewed listing by ID
+ * @param {string} url Rest API URL for listing by ID 
+ * @returns {string} The listing that is clicked by the user
  */
 async function fetchPost(url) {
         try {
@@ -60,7 +58,6 @@ async function fetchPost(url) {
 
             const profileLink = document.querySelector(".profile");
             const creditsShown = document.querySelector(".credits");
-            // const signout = document.querySelector(".sign-out");
 
             if(loggedInUser == null){
                 profileLink.innerText = "Login";
@@ -87,18 +84,12 @@ async function fetchPost(url) {
             bids.classList.add("bids");
             bids.innerHTML = `${listing._count.bids} bids`;
 
-            // const viewBids = document.createElement("button");
-            // viewBids.setAttribute("type", "button");
-            // viewBids.innerText = "View bids";
-            // viewBids.dataset.bsToggle = "modal";
-            // viewBids.dataset.bsTarget = "#bidsModal";
             const modalBody = document.querySelector(".modal-body");
             for(let i = 0; i < listing.bids.length; i++){
                 modalBody.innerHTML += `
                 (${i})   Bid amount: ${listing.bids[i].amount} // made by: ${listing.bids[i].bidderName}<br>
                 `;
             }
-            // viewBids.classList.add("viewBids", "mb-2", "p-0");
 
             const seller = document.createElement("h6");
             seller.classList.add("seller");
@@ -107,14 +98,7 @@ async function fetchPost(url) {
             const leadingBid = document.createElement("p");
             leadingBid.classList.add("leading-bid");
 
-            const leadingBidFormula = (listing.bids.length - 1)
-
-            // leadingBid.innerHTML = `Leading bid: ${listing.bids[0].amount} credits`;
-
-            // const viewBtn = document.createElement("a");
-            // viewBtn.classList.add("view-btn", "text-decoration-none");
-            // viewBtn.innerHTML = "View listing";
-            // viewBtn.id = listing.id;
+            const leadingBidFormula = (listing.bids.length - 1);
 
             const bidAmount = document.createElement("input");
             bidAmount.setAttribute("type", "number");
@@ -141,6 +125,11 @@ async function fetchPost(url) {
                 const date = new Date(x)
     
                 auctionDate.innerHTML = `Ends at: <br>${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            }
+
+            if(loggedInUser == listing.seller.name){
+                bidBtn.classList.add("d-none");
+                bidAmount.classList.add("d-none");
             }
 
             const bidError = document.createElement("p");
@@ -204,7 +193,6 @@ async function fetchPost(url) {
             listingDiv.appendChild(auctionDate);
             listingDiv.appendChild(bids);
             listingDiv.appendChild(leadingBid);
-            // listingDiv.appendChild(viewBids);
             listingDiv.appendChild(seller);
             listingDiv.appendChild(bidBtn);
             listingDiv.appendChild(bidAmount);
@@ -292,10 +280,4 @@ async function bidOnItem(url, userData) {
     }
 }
 
-
-
-
-
-            
-//fetchPost(fetchPost_URL);
 
