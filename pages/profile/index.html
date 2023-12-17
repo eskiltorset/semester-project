@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Electro Auction | Profile</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>        <link rel="stylesheet" href="/dist/css/styles.css">
+        <script type="module" src="../../scripts/profile/profile.js" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-md border-bottom">
+                <a class="navbar-brand col-4" href="../listings_logged_in/index.html">ElectroAuction</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item px-2 align-self-center">
+                            <a class="nav-link listings" href="../listings_logged_in/index.html">Listings</a>
+                        </li>
+                        <li class="nav-item pe-2 align-self-center">
+                            <button class="nav-link sign-out">Sign Out</button>
+                        </li>
+                    </ul>
+                </div> 
+            </nav>
+        </div>
+
+            <div class="profile-background col-12 col-sm-10 col-md-10 bg-light mx-auto">
+                <div class="profile-head-section col-12 mx-auto d-flex justify-content-between text-center pt-4 h-100">
+                    <div class="col-3">
+                        <img class="rounded-circle h-50 avatar" alt="avatar" src=""/>
+                        <p class="username mt-2 mb-0">@</p>
+                        <button type="button" class="btn editAvatar2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Edit Avatar
+                        </button>
+                    </div>
+                    <p class="credits-profile col-3 mt-5">Credits: <br></p>
+                    <p class="listed-by-you col-3 mt-5">Listed by you: <br></p>
+                    <p class="bids-won col-3 mt-5">Bids won: <br></p>
+                </div>
+            </div>
+
+            <h1 class="text-center mt-3">Your listings</h1>
+            <div id="listings_section" class="listings-section d-flex flex-wrap justify-content-center col-12 col-sm-10 col-md-8 col-lg-6 mb-4 mx-auto">
+                     
+                <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Avatar URL</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <input type="url" class="w-100" id="newAvatar" placeholder="Your media URL goes here">
+                        </div>
+                        <div class="modal-footer">
+                        <h6 class="text-success avatarMsg"></h6>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn red-btn updateAvatar">Save changes</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div> 
+            
+           
+            </div>
+          </div>
+    </body>
+</html>

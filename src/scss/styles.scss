@@ -1,0 +1,166 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/functions";
+
+// Login page + navbar
+body {
+    background-color: $primary;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    font-size: 1.7rem;
+}
+
+::-webkit-input-placeholder {
+    font-size: 13px!important;
+ }
+ 
+ :-moz-placeholder { 
+       font-size: 13px!important;
+ }
+ ::-moz-placeholder {  
+       font-size: 13px!important;
+ }
+
+.nav-link, .navbar-brand, h1 {
+    color: $typography;
+}
+
+.sign-out {
+    color: $third;
+}
+
+.navbar-brand:hover {
+    cursor: pointer;
+}
+
+.search {
+    margin: 0 auto;
+}
+
+.login {
+    color: $secondary;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+input, .textarea {
+    border-radius: 0;
+    font-size: 13px!important;
+    border-color: $fourth;
+}
+
+.textarea:focus, input:focus {
+    border-color: $fourth;
+}
+
+label {
+    color: $typography;
+}
+
+.blue-btn {
+    background-color: $secondary;
+    color: white;
+}
+
+.red-btn {
+    background-color: $third;
+    color: white;
+}
+
+.blue-btn:hover {
+    background-color: $secondary;
+    color: white;
+    box-shadow: 0 1px 8px $secondary; 
+}
+
+.red-btn:hover {
+    background-color: $third;
+    color: white;
+    box-shadow: 0 1px 8px $third;
+}
+
+.nav-link:hover {
+    color: $secondary;
+}
+
+.credits {
+    font-size: 0.8rem;
+    cursor: default;
+}
+
+.credits:hover {
+    color: $typography;
+}
+
+.credits span {
+    color: green;
+    font-weight: bold;
+}
+
+// line with word on login page
+.group { 
+    display: table;
+    width: 100%;
+    font-size: 1em;
+    margin: 0 auto;
+    color: $typography;
+} 
+.item {
+    display: table-cell;
+}
+.text { 
+    white-space: nowrap;
+    width: 1%;
+    padding: 0 10px;
+}
+.line {
+    border-bottom: 1px solid #000;
+    position: relative;
+    top: -.5em;
+}
+
+// Listing page
+
+.auctionDate {
+    color: $secondary;
+}
+
+.loginBtn, .editAvatar2, .viewBids, .back-btn {
+    color: $secondary;
+    border: none;
+    background-color: transparent;
+}
+
+.loginBtn, .editAvatar2, .viewBids, .back-btn:hover {
+    color: $secondary;
+}
+
+.leadingBid {
+    color: $third;
+    font-weight: bold;
+}
+
+// Profile Page
+
+.profile-background {
+    height: 200px;
+    background-color: $fourth;
+}
+
+@media screen and (min-width: 847px) {
+    .bid-btn {
+        margin-bottom: 100px;
+    }
+}
+
+
+
+
+
+
+
+
